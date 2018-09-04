@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- aop annotation setting -->
+	<aop:aspectj-autoproxy />
+	
+	<!-- target object 원본 -->
+	<bean name="cal" class="com.newlecture.aop.spring.anno.NewlecCalculator" />
+	
+	<!-- new handler object 또다른 관점에 대한 것 -->
+	<bean class="com.newlecture.aop.spring.anno.CalculatorAspectHandler" />
+	
+
+	<!-- 범주를 축소 -->
+<!-- 	<context:component-scan base-package="com.newlecture.di.ui com.newlecture.di.entity" />
+	<context:annotation-config /> -->
+	
+
+	
+	<!-- handler object -->
+<!-- 	<bean name="around" class="com.newlecture.aop.spring.LogHandler" />
+	<bean name="before" class="com.newlecture.aop.spring.AuthorHandler" />
+	<bean name="after" class="com.newlecture.aop.spring.AfterHandler" />
+	<bean name="throwing" class="com.newlecture.aop.spring.ErrorHandler" /> -->
+	
+	<!-- point cutting 무엇과 무엇을 엮어줌 -->
+	
+	<!-- 도구 1  : 이름으로 cutting 하기,  point cutting의 도구 4가지 
+		타켓의 메소드가 조인 포인트, 그 때 너너너 라는 이름으로 커팅 -->
+<!-- 	<bean name="namedPointCut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		add를 포인트컷으로 잡음
+		<property name="mappedName" value="add" />
+	</bean> -->
+	
+	<!-- 어떤 포인트 컷에 어떤 어드바이스를 사용하게 할 것인지를 알려주는 구조체 -->
+<!-- 	<bean name="namedAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		add 핸들러에 around를 결합한다.
+		<property name="pointcut" ref="namedPointCut" />
+		<property name="advice" ref="around" />
+	</bean> -->
+	
+	<!-- 도구 2 : 이름 패턴으로 cutting 하기 -->
+<!-- 	<bean name="patternAdvisor" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+		<property name="pattern" value="add" />
+		<property name="advice" ref="before" />
+	</bean> -->
+
+	<!-- 도구 3 : 포인트 컷 + 어드바이스 정보를 하나로 가지는 Advisor -->
+<!-- 	<bean name="patternAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+		포인트 컷 객체를 참조하지 않고 자신이 포인트 컷 정보를 설정할 수 있다.
+		<property name="pattern" value="" />
+		<property name="advice" ref="around" />
+	</bean>	 -->
+	
+	<!-- proxy object 대행 -->
+<!-- 	<bean name="cal" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="target" />
+		<property name="interceptorNames">
+			<list>
+				<value>namedAdvisor</value>
+				<value>patternAdvisor</value>
+			다음은 포인트 컷을 사용하지 않은 설정
+				<value>before</value>
+				<value>around</value>
+				<value>after</value>
+				<value>throwing</value>
+			</list>
+		</property>
+	</bean> -->
+
+</beans>

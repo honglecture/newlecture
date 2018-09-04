@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<!-- access 역할자의 정보를 알려줘야 한다. -->		
+	<http auto-config="true">
+		<!-- 하위 객체의 모든 것  /** -->
+		<intercept-url pattern="/teacher/**" access="hasRole('ROLE_TEACHER')" />
+	</http>
+	
+	<!-- 인증정보 때려박음, db연동, 서버사용자정보 -->
+	<authentication-manager>
+		<authentication-provider>
+			<!-- 암호화 인코더 설정 bcrypt가 강력하다고 함 -->
+			<password-encoder hash="bcrypt" />
+			<user-service>
+				<!-- authorities는 권한 그룹입니다. -->
+				<user name="newlec" password="$2a$10$zpE1ThBwaRlZM2uMMShksurhrRjw/QtUZXB4cfON4.owLTFqkyQx." authorities="ROLE_STUDENT,ROLE_TEACHER" />
+				<user name="dragon" password="{noop}111" authorities="ROLE_STUDENT" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+	
+</beans:beans>

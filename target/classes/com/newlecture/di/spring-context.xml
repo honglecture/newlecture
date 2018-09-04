@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 범주를 축소 -->
+	<context:component-scan base-package="com.newlecture.di.ui com.newlecture.di.entity" />
+	<context:annotation-config />
+
+<!-- 	<bean name="exam" class="com.newlecture.entity.Exam">
+		<constructor-arg name="eng" value="1" />첫번째
+		<constructor-arg name="kor" value="10" />두번째
+		<constructor-arg name="math" value="100" />세번째
+	</bean> -->
+	
+	<!-- <bean name="console" class="com.newlecture.ui.FlowExamConsole"></bean> -->
+
+</beans>
