@@ -25,8 +25,8 @@ public class ServletContextConfig implements WebMvcConfigurer {
 	 * value=".jsp" /> <property name="order" value="2" /> </bean>
 	 */
 
-	// ÀÌ Å¬·¡½º¸¦ »ý¼ºÇØ¼­ ´Þ¶ó°í ÇÏ´Â°Çµ¥, ¸Þ¼Òµå ÀÌ¸§Àº ÄÁÅ×ÀÌ³Ê¿¡ ´ã°ÜÁø ÀÌ¸§ getÀÌ µé¾î°¡¸é ¾ÈµÈ´Ù.
-	/* ¿ÞÂÊ Å¬·¡½º¸¦ °´Ã¼È­ ÇØ¼­ ¿À¸¥ÂÊ ÀÌ¸§À¸·Î IoC¿¡ ´ã¾ÆÁÖ¼¼¿ä */
+	// ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Þ¶ï¿½ï¿½ ï¿½Ï´Â°Çµï¿½, ï¿½Þ¼Òµï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ getï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
+	/* ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼È­ ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ IoCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½ */
 	/*
 	 * <bean name="internalResourceViewResolver"
 	 * class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -60,6 +60,7 @@ public class ServletContextConfig implements WebMvcConfigurer {
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
 		tilesConfigurer.setDefinitions("/WEB-INF/tiles.xml");
+		tilesConfigurer.setCheckRefresh(true);
 		return tilesConfigurer;
 	}
 

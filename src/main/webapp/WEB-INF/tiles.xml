@@ -11,6 +11,13 @@
 	    <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 	</definition>
 	
+	<definition name="teacher.*.*" template="/WEB-INF/views/teacher/inc/layout.jsp">
+		<put-attribute name="title" value="Tiles tutorial homepage" />
+	    <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
+	    <put-attribute name="main" value="/WEB-INF/views/teacher/{1}/{2}.jsp" />
+	    <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
+	</definition>
+	
 	<!-- teacher index -->
 	<definition name="teacher.*" template="/WEB-INF/views/teacher/inc/layout.jsp">
 		<put-attribute name="title" value="Tiles tutorial homepage" />
@@ -19,15 +26,7 @@
 	    <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
 	</definition>
 	
-	<definition name="teacher.*.*" template="/WEB-INF/views/teacher/inc/layout.jsp">
-		<put-attribute name="title" value="Tiles tutorial homepage" />
-	    <put-attribute name="header" value="/WEB-INF/views/inc/header.jsp" />
-	    <put-attribute name="main" value="/WEB-INF/views/teacher/{1}/{2}.jsp" />
-	    <put-attribute name="footer" value="/WEB-INF/views/inc/footer.jsp" />
-	</definition>
-	
 
-	
 	
 	<definition name="member.*" template="/WEB-INF/views/inc/sublayout.jsp">
 		<put-attribute name="title" value="Tiles tutorial homepage" />
