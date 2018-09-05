@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.newlecture.web.dao.MemberRoleDao;
+import com.newlecture.web.entity.MemberRole;
 @Repository
 public class MybatisMemberRoleDao implements MemberRoleDao {
 	
@@ -14,33 +15,38 @@ public class MybatisMemberRoleDao implements MemberRoleDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public int insert(MemberRoleDao memberRole) {
+	public int insert(MemberRole memberRole) {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
 		return memberRoleDao.insert(memberRole);
 	}
 
 	@Override
-	public int update(MemberRoleDao memberRole) {
+	public int update(MemberRole memberRole) {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
 		return memberRoleDao.update(memberRole);
 	}
 
 	@Override
-	public int delete(String id) {
+	public int delete(MemberRole memberRole) {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
-		return memberRoleDao.delete(id);
+		return memberRoleDao.delete(memberRole);
 	}
 
 	@Override
-	public MemberRoleDao get(String id) {
+	public MemberRole get(MemberRole memberRole) {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
-		return memberRoleDao.get(id);
+		return memberRoleDao.get(memberRole);
 	}
 
 	@Override
-	public List<MemberRoleDao> getList() {
+	public List<MemberRole> getList() {
+		return getList(null);
+	}
+
+	@Override
+	public List<MemberRole> getList(String memberId) {
 		MemberRoleDao memberRoleDao = sqlSession.getMapper(MemberRoleDao.class);
-		return memberRoleDao.getList();
+		return memberRoleDao.getList(memberId);
 	}
 
 }

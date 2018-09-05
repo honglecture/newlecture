@@ -29,8 +29,8 @@ public class SecurityContextConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests() // 인터셉터 설정
-/*				.antMatchers("/teacher/**").hasAnyRole("ADMIN, TEACHER") // 권한이 필요해
-*/				.antMatchers("/student/**").hasAnyRole("ADMIN, STUDENT") // 권한이 필요해
+				.antMatchers("/teacher/**").hasAnyRole("ADMIN, TEACHER") // 권한이 필요해
+				.antMatchers("/student/**").hasAnyRole("ADMIN, STUDENT") // 권한이 필요해
 				.antMatchers("/customer/question").authenticated() //이 요청은 인증을 해야해
 				.anyRequest().permitAll() // 나머지는 권한이 필요없어
 			.and()

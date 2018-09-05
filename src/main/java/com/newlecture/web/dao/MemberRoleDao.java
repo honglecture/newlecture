@@ -2,16 +2,20 @@ package com.newlecture.web.dao;
 
 import java.util.List;
 
+import com.newlecture.web.entity.MemberRole;
+
 public interface MemberRoleDao {
 	
-	int insert(MemberRoleDao memberRole);
+	int insert(MemberRole memberRole);
 
-	int update(MemberRoleDao memberRole);
+	int update(MemberRole memberRole);
 
-	int delete(String id);
+	int delete(MemberRole memberRole);
 
-	MemberRoleDao get(String id);
+	MemberRole get(MemberRole memberRole);
 
-	List<MemberRoleDao> getList();
+	List<MemberRole> getList();
+
+	List<MemberRole> getList(String memberId);
 
 }

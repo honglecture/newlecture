@@ -25,7 +25,7 @@ public class ServiceContextConfig {
 		basicDataSource.setUsername("sist");
 		basicDataSource.setPassword("dclass");*/
 		
-		/*mysql or mariadb*/
+		/*mysql*/
 		basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		basicDataSource.setUrl("jdbc:mysql://localhost/newlecturedb?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8");
 		basicDataSource.setUsername("hong");

@@ -4,4 +4,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newlecture.web.dao.MemberRoleDao">
 
+	<insert id="insert" parameterType="com.newlecture.web.entity.MemberRole">
+		insert into MemberRole(memberId, roleName, defaultRole)
+		values(#{memberId}, #{roleName}, #{defaultRole})
+	</insert>
+
+	<update id="update" parameterType="com.newlecture.web.entity.MemberRole">
+		update MemberRole
+		set defaultRole = #{defaultRole}
+		where memberId = #{memberId} and roleName=#{roleName}
+	</update>
+
+	<delete id="delete" parameterType="com.newlecture.web.entity.MemberRole">
+		delete from MemberRole
+		where memberId=#{memberId} and roleName=#{roleName}
+	</delete>
+
+	<select id="get" resultType="com.newlecture.web.entity.MemberRole">
+		select * from MemberRole 
+		where memberId=#{memberId} and roleName=#{roleName}
+	</select>
+
+	<select id="getList" parameterType="String" resultType="com.newlecture.web.entity.MemberRole">
+		select * from MemberRole
+		<!-- 동적쿼리를 만들어야 한다 -->
+ 		<if test="value != null">
+		where memberId=#{value}
+		</if>
+	</select>
+
 </mapper>
