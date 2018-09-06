@@ -12,7 +12,7 @@ import com.newlecture.web.entity.Question;
 @RequestMapping("/teacher/question/")
 public class QuestionController {
 
-	@RequestMapping("type")
+	@GetMapping("type")
 	public String type(Model model) {
 		model.addAttribute("hello", "servlet");
 		return "teacher.question.type";

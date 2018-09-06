@@ -3,6 +3,7 @@
 <main>
 	<section>
 		<h1>회원가입</h1>
-		아이디 : ${member.name }
+		<a href="join-email">뉴렉쳐 계정 생성하기</a>
+		<a href="">카카오 계정으로 가입하기</a>
 	</section>
 </main>

@@ -20,16 +20,16 @@ public class ServiceContextConfig {
 
 		// db 연결 설정
 		/*mssql-server*/
-/*		basicDataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		basicDataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		basicDataSource.setUrl("jdbc:sqlserver://211.238.142.251:1433;databaseName=lecture");
 		basicDataSource.setUsername("sist");
-		basicDataSource.setPassword("dclass");*/
+		basicDataSource.setPassword("dclass");
 		
 		/*mysql*/
-		basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+/*		basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		basicDataSource.setUrl("jdbc:mysql://localhost/newlecturedb?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8");
 		basicDataSource.setUsername("hong");
-		basicDataSource.setPassword("1234");
+		basicDataSource.setPassword("1234");*/
 
 		// 커넥션풀 설정
 		basicDataSource.setRemoveAbandoned(true);
