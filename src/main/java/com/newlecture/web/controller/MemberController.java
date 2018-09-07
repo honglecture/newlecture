@@ -1,6 +1,8 @@
 package com.newlecture.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +42,8 @@ public class MemberController {
 		System.out.println(email);
 		// POST한 다음 안내의 말을 해줘야 한다. 이메일을 확인해 주세요..
 		//이메일을 보내기 위한 준비작업
+		
+		JavaMailSender mailSender = new JavaMailSenderImpl();
 		
 		
 		return "member.join-email-info";
