@@ -1,5 +1,7 @@
 package com.newlecture.web.config;
 
+import java.util.Properties;
+
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -8,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @ComponentScan(basePackages= {"com.newlecture.web.dao.mybatis", "com.newlecture.web.service"})
 @Configuration
@@ -59,5 +63,30 @@ public class ServiceContextConfig {
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
+	
+	@Bean
+	public JavaMailSender mailSender() {
+		//이메일을 보내기 위한 준비작업
+		
+		//이메일 보낼 때 이용할 smtp 정보
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setDefaultEncoding("UTF-8");
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("magnetic0824");
+		mailSender.setPassword("magnetic0611");
+
+		//이메일 보낼 때 이용할 설정값
+		Properties javaMailProperties = new Properties();
+		javaMailProperties.put("mail.transport.protocol", "smtp");
+		javaMailProperties.put("mail.smtp.auth", true);
+		javaMailProperties.put("mail.smtp.starttls.enable", true);
+		javaMailProperties.put("mail.debug", true);
+		mailSender.setJavaMailProperties(javaMailProperties);
+		
+		return mailSender;
+		
+	}
+	
 
 }
