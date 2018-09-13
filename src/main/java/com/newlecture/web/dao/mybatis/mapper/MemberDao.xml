@@ -5,8 +5,8 @@
 <mapper namespace="com.newlecture.web.dao.MemberDao">
 
 	<insert id="insert" parameterType="com.newlecture.web.entity.Member">
-		insert into Member(id, name, email, pwd)
-		values(#{id}, #{name}, #{email}, #{pwd})
+		insert into Member(id, name, email, pwd, photo)
+		values(#{id}, #{name}, #{email}, #{pwd}, #{photo})
 	</insert>
 
 	<update id="update" parameterType="com.newlecture.web.entity.Member">
@@ -24,6 +24,10 @@
 
 	<select id="get" resultType="com.newlecture.web.entity.Member">
 		select * from Member where id=#{param1}
+	</select>
+	
+	<select id="getByEmail" parameterType="String" resultType="com.newlecture.web.entity.Member">
+		select email from Member where email = #{value};
 	</select>
 
 	<select id="getList" resultType="com.newlecture.web.entity.Member">

@@ -9,16 +9,18 @@ public class Member {
 	private String email;
 	private String pwd;
 	private Date regDate;
+	private String photo;
 
 	public Member() {
 	}
 
-	public Member(String id, String name, String email, String pwd, Date regDate) {
+	public Member(String id, String name, String email, String pwd, Date regDate, String photo) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.pwd = pwd;
 		this.regDate = regDate;
+		this.photo = photo;
 	}
 
 	public String getId() {
@@ -61,10 +63,18 @@ public class Member {
 		this.regDate = regDate;
 	}
 
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [id=" + id + ", name=" + name + ", email=" + email + ", pwd=" + pwd + ", regDate=" + regDate
-				+ "]";
+				+ ", photo=" + photo + "]";
 	}
 
 }

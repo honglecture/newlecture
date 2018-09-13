@@ -18,13 +18,16 @@ public class QuestionController {
 		return "teacher.question.type";
 	}
 	
-	// @RequestMapping(value="reg",method=RequestMethod.GET)
 	@GetMapping("choice-reg")
 	public String choiceReg() {
 		return "teacher.question.choice-reg";
 	}
+	
+	@GetMapping("list")
+	public String list() {
+		return "teacher.question.list";
+	}
 
-	// @RequestMapping(value="reg",method=RequestMethod.POST)
 	@PostMapping("choice-reg")
 	public String choiceReg(Question question) {
 		return "redirect:type";

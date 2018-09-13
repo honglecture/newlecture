@@ -27,5 +27,7 @@
 				</tr>  
 			</table>
 		</form>
+		<a href="find-id">아이디찾기</a>
+		<a href="reset-pwd">비밀번호 재설정</a>
 	</section>
 </main>

@@ -61,7 +61,7 @@
 		<section id="teacher-menu">
 			<h1 class="hidden">강사메뉴</h1>
 			<ul>
-				<li><a href="/teacher/question/type">문제관리</a></li>
+				<li><a href="/teacher/question/list">문제관리</a></li>
 				<li><a href="">시험관리</a></li>
 				<li><a href="">일정관리</a></li>
 				<li><a href="">수업관리</a></li>

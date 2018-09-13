@@ -1,8 +1,14 @@
 package com.newlecture.web.config;
 
+import java.nio.charset.Charset;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -25,8 +31,7 @@ public class ServletContextConfig implements WebMvcConfigurer {
 	 * value=".jsp" /> <property name="order" value="2" /> </bean>
 	 */
 
-	// �� Ŭ������ �����ؼ� �޶�� �ϴ°ǵ�, �޼ҵ� �̸��� �����̳ʿ� ����� �̸� get�� ���� �ȵȴ�.
-	/* ���� Ŭ������ ��üȭ �ؼ� ������ �̸����� IoC�� ����ּ��� */
+	/* 
 	/*
 	 * <bean name="internalResourceViewResolver"
 	 * class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -79,6 +84,26 @@ public class ServletContextConfig implements WebMvcConfigurer {
 		.addResourceHandler("/resources/**")
 		.addResourceLocations("/resources/");
 	}
+	
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		
+		StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+		converter.setWriteAcceptCharset(false); // 내가 설정한 방식을 따라라..
+		converters.add(converter);
+		WebMvcConfigurer.super.configureMessageConverters(converters);
+	}
+	
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		// 파일 사이즈 설정
+		resolver.setMaxUploadSize(1024*1024*100); // 전체
+		resolver.setMaxUploadSizePerFile(1024*1024*10); // 파일 마다
+		resolver.setDefaultEncoding("UTF-8");
+		return resolver;
+	}
+	
 	
 
 }
