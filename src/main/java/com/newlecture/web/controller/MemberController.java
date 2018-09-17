@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.newlecture.web.entity.Member;
-import com.newlecture.web.service.MybatisHomeService;
+import com.newlecture.web.service.HibernateHomeService;
 
 @Controller
 @RequestMapping("/member/")
@@ -47,8 +47,8 @@ public class MemberController {
 /*	@Autowired
 	private MemberDao memberDao;*/
 	
-	@Autowired
-	private MybatisHomeService service;
+	//@Autowired
+	private HibernateHomeService service;
 	
 	@Autowired
 	private JavaMailSender mailSender;

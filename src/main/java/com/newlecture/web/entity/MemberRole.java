@@ -1,8 +1,15 @@
 package com.newlecture.web.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class MemberRole {
 
+	@Id
 	private String memberId;
+	
+	@Id
 	private String roleName;
 	private boolean defaultRole;
 

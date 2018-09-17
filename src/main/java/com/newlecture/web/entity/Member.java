@@ -2,17 +2,27 @@ package com.newlecture.web.entity;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+/*@Table(name="User")*/
 public class Member {
 
+	@Id
 	private String id;
+
 	private String name;
 	private String email;
 	private String pwd;
-	private Date regDate;
+	
+	@Column(insertable=false)
+	private Date regDate; // 이거는 insert에 설정 안함
+	/*@Column(name="FOTO")*/ // 컬럼 이름 맞춰주는 것
 	private String photo;
 
-	public Member() {
-	}
+	public Member() {}
 
 	public Member(String id, String name, String email, String pwd, Date regDate, String photo) {
 		this.id = id;

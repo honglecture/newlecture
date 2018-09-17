@@ -12,8 +12,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@ComponentScan(basePackages= {"com.newlecture.web.dao.mybatis", "com.newlecture.web.service"})
+@ComponentScan(basePackages= {"com.newlecture.web.dao.hibernate"/*, "com.newlecture.web.service"*/})
+@EnableTransactionManagement
 @Configuration
 public class ServiceContextConfig {
 
@@ -41,8 +45,40 @@ public class ServiceContextConfig {
 		basicDataSource.setMaxActive(30);
 		return basicDataSource;
 	}
+	
+	//Hibernate 설정을 위한 빈 객체들
+	@Bean
+	public LocalSessionFactoryBean sessionFactory() {
+		
+		Properties props = new Properties();
+		//props.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+		props.put("hibernate.show_sql", "true");
+		
+		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+		sessionFactoryBean.setDataSource(basicDataSource());
+		sessionFactoryBean.setPackagesToScan("com.newlecture.web.entity");
+		sessionFactoryBean.setHibernateProperties(props);
+		
+		return sessionFactoryBean;
+	}
+	
+	
+	// 하이버네이트를 위한 트랜잭션 프록시
+	@Bean
+	public HibernateTransactionManager transactionManager() {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		// .getObject() 세션팩토리로 반환
+		transactionManager.setSessionFactory(sessionFactory().getObject());
+		return transactionManager;
+	}
+	
+	
+	
+	
 
 	
+	//MyBatis 설정을 위한 빈 객체
 	//객체 만들 때는 SqlSessionFactoryBean, return 할 때는 SqlSessionFactory  ok??
 	@Bean
 	public SqlSessionFactory sqlSessionFactoryBean(BasicDataSource basicDataSource) throws Exception {

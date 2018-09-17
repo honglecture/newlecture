@@ -5,27 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.newlecture.web.dao.LevelDao;
+import com.newlecture.web.dao.QuestionLevelDao;
 import com.newlecture.web.dao.QuestionDao;
 import com.newlecture.web.dao.SubjectDao;
-import com.newlecture.web.entity.Level;
+import com.newlecture.web.entity.QuestionLevel;
 import com.newlecture.web.entity.Question;
 import com.newlecture.web.entity.Subject;
 
 //@Repository, @Controller, @Service  의미가 있는 컴포넌트
 @Service
-public class MybatisTeacherService implements TeacherService {
-	
-	
+public class HibernateTeacherService implements TeacherService {
+
 	@Autowired
 	private SubjectDao subjectDao;
-	
+
 	@Autowired
-	private LevelDao levelDao;
-	
+	private QuestionLevelDao levelDao;
+
 	@Autowired
 	private QuestionDao questionDao;
-	
 
 	@Override
 	public List<Subject> getSubjectList() {
@@ -33,33 +31,33 @@ public class MybatisTeacherService implements TeacherService {
 	}
 
 	@Override
-	public List<Level> getLevelList() {
+	public List<QuestionLevel> getLevelList() {
 		return levelDao.getList();
 	}
 
 	@Override
 	public List<Question> getQuestionList() {
-		return questionDao.getList();
+		return getQuestionList("", null, "regDate", 1);
 	}
 
 	@Override
 	public List<Question> getQuestionList(String query) {
-		return null;
+		return getQuestionList(query, null, "regDate", 1);
 	}
 
 	@Override
 	public List<Question> getQuestionList(String query, int page) {
-		return null;
+		return getQuestionList(query, null, "regDate", page);
 	}
 
 	@Override
-	public List<Question> getQuestionList(String query, boolean all, int page) {
-		return null;
+	public List<Question> getQuestionList(String query, String ownerId, int page) {
+		return getQuestionList(query, null, "regDate", page);
 	}
 
 	@Override
-	public List<Question> getQuestionList(String query, boolean all, String sortField, int page) {
-		return null;
+	public List<Question> getQuestionList(String query, String ownerId, String sortField, int page) {
+		return questionDao.getList(query, ownerId, sortField, page);
 	}
 
 }

@@ -33,10 +33,35 @@ window.addEventListener("load", function(e){
         // body.html 가 로드되었을 때
         win.addEventListener("load", function(e){    
             var doc = win.document;
-        	var boldButton = webEditor.querySelector(".bold-button");
-            boldButton.onclick = function(e){
-                doc.execCommand("bold");  
-            };
+            //var boldButton = webEditor.querySelector(".bold-button");
+            
+            var toolbar = webEditor.querySelector(".toolbar");
+
+            toolbar.onclick = function(e){
+                var name = e.target.dataset.name;
+                
+                switch(name){
+                case "bold":
+                	// 선택 영영을 제공해 주고 있습니다. 선택된 영역을 얻어주세요 그리고 ?에 넣어주세요;
+                    var selObj = doc.getSelection(); 
+                    doc.execCommand("bold"); 
+                    //doc.execCommand("insertHTML", false, "<strong>"+selObj+"</strong>");
+                    break;  
+                case "italic":
+                    var selObj = doc.getSelection(); 
+                    doc.execCommand("italic"); 
+                    break;  
+                case "color":
+                	doc.execCommand("foreColor", false, "#979797");
+                    break;
+                }
+                editorTarget.value = doc.body.innerHTML;
+            }
+ 
+            doc.body.onkeyup = function(e){
+                editorTarget.value = doc.body.innerHTML;
+            }
+            
         });
         
         
