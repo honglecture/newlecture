@@ -1,7 +1,12 @@
 package com.newlecture.web.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class QuestionLevel {
 
+	@Id
 	private long id;
 	private String name;
 
