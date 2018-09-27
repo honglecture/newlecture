@@ -14,7 +14,7 @@ import com.newlecture.web.service.TeacherService;
 @RequestMapping("/teacher/")
 public class HomeController {
 	
-	//@Autowired
+	@Autowired
 	private TeacherService teacherService;
 
 	@RequestMapping("index")

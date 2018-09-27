@@ -1,41 +1,45 @@
 package com.newlecture.web.entity;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
+//@IdClass(Member.class)
 public class MemberRole {
+	@EmbeddedId
+	private MemberRoleId id; // 2개의
 
-	@Id
-	private String memberId;
-	
-	@Id
-	private String roleName;
+	/*
+	 * private String memberId; private String roleName;
+	 */
 	private boolean defaultRole;
 
 	public MemberRole() {
+
 	}
 
 	public MemberRole(String memberId, String roleName, boolean defaultRole) {
-		this.memberId = memberId;
-		this.roleName = roleName;
+		this.id = new MemberRoleId(memberId, roleName);
+		/*
+		 * this.memberId = memberId; this.roleName = roleName;
+		 */
 		this.defaultRole = defaultRole;
 	}
 
 	public String getMemberId() {
-		return memberId;
+		return id.getMemberId();
 	}
 
 	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+		this.id.setMemberId(memberId);
 	}
 
 	public String getRoleName() {
-		return roleName;
+		return id.getRoleName();
 	}
 
 	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+		this.id.setRoleName(roleName);
 	}
 
 	public boolean getDefaultRole() {
@@ -48,7 +52,8 @@ public class MemberRole {
 
 	@Override
 	public String toString() {
-		return "MemberRole [memberId=" + memberId + ", roleName=" + roleName + ", defaultRole=" + defaultRole + "]";
+		return "MemberRole [memberId=" + id.getMemberId() + ", roleName=" + id.getRoleName() + ", defaultRole="
+				+ defaultRole + "]";
 	}
 
 }

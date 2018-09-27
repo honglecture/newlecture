@@ -16,7 +16,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@ComponentScan(basePackages= {"com.newlecture.web.dao.hibernate"/*, "com.newlecture.web.service"*/})
+@ComponentScan(basePackages= {"com.newlecture.web.dao.hibernate", "com.newlecture.web.service"})
 @EnableTransactionManagement
 @Configuration
 public class ServiceContextConfig {
@@ -63,7 +63,6 @@ public class ServiceContextConfig {
 		return sessionFactoryBean;
 	}
 	
-	
 	// 하이버네이트를 위한 트랜잭션 프록시
 	@Bean
 	public HibernateTransactionManager transactionManager() {
@@ -73,10 +72,6 @@ public class ServiceContextConfig {
 		return transactionManager;
 	}
 	
-	
-	
-	
-
 	
 	//MyBatis 설정을 위한 빈 객체
 	//객체 만들 때는 SqlSessionFactoryBean, return 할 때는 SqlSessionFactory  ok??

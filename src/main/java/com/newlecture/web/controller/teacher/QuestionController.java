@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.newlecture.web.entity.QuestionLevel;
 import com.newlecture.web.entity.Question;
+import com.newlecture.web.entity.QuestionLevel;
 import com.newlecture.web.entity.Subject;
 import com.newlecture.web.service.TeacherService;
 
@@ -19,7 +19,7 @@ import com.newlecture.web.service.TeacherService;
 @RequestMapping("/teacher/question/")
 public class QuestionController {
 	
-	//@Autowired
+	@Autowired
 	private TeacherService service;
 	
 	@GetMapping("list")

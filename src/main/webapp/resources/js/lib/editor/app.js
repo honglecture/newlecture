@@ -54,6 +54,60 @@ window.addEventListener("load", function(e){
                 case "color":
                 	doc.execCommand("foreColor", false, "#979797");
                     break;
+                case "image":
+                    var fileInput = toolbar.querySelector("input[type='file']");
+
+                    var event = new MouseEvent("click",{
+                        "view" : window,
+                        "bubbles" : true,
+                        "cancelable" : true
+                    });
+                    fileInput.dispatchEvent(event);
+                    fileInput.onchange = function(e){
+            			var file = fileInput.files[0];
+            			// 선택한 파일에 대한 조건 제어
+            			for(var p in file){
+            				console.log(p);
+            			}
+            			
+            			console.log(file.type); //image/jpeg
+            			
+            			if(file.type.indexOf("image/") < 0){
+            				alert("이미지가 아닙니다.");
+            				return;
+            			}
+            			
+            			if(file.size > 1024*1024*10){
+            				alert("죄송합니다. 10MB를 초과할 수 없습니다.")
+            				return;
+                        }
+                        
+
+            			// file.size;
+            			// file.type;
+            			// url encoded / multipart.form
+                        
+                        var formData = new FormData();
+                        formData.append("file", file);
+
+                        var request = new XMLHttpRequest();
+
+                        request.onload = function(e){
+                            // ?? 업로드된 사진을 편집 영역에 붙여 넣기를 해야 한다.
+                            if(request.status == 200){
+                                var path = request.responseText;
+                                console.log(path);
+                            } else{
+                                alert("에러났어 바보야");
+                            }
+                        }
+                        request.open("POST", "/academy/upload-ajax", true);
+                        request.send(formData);
+                        
+                    }
+                    var selObj = doc.getSelection(); 
+                    doc.execCommand("italic"); 
+                    break;
                 }
                 editorTarget.value = doc.body.innerHTML;
             }

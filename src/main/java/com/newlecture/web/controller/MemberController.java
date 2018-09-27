@@ -38,7 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.newlecture.web.entity.Member;
-import com.newlecture.web.service.HibernateHomeService;
+import com.newlecture.web.service.HomeService;
 
 @Controller
 @RequestMapping("/member/")
@@ -47,8 +47,8 @@ public class MemberController {
 /*	@Autowired
 	private MemberDao memberDao;*/
 	
-	//@Autowired
-	private HibernateHomeService service;
+	@Autowired
+	private HomeService service;
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -142,12 +142,9 @@ public class MemberController {
 		
 		//쿠키를 심는 작업
 		Cookie cookie = new Cookie("joinId", digest); //식별값, 문자열만 담아야 한다.
-		
-		
 		// member로 경로를 줄인다
 		cookie.setPath("/member/"); // 경로 member에서만 쓴다.
 		cookie.setMaxAge(60*60*24); // 단위
-		
 		response.addCookie(cookie);
 		
 /*		
@@ -262,7 +259,6 @@ public class MemberController {
  		
  		String filePaht = homeDir +  uploadedFileName;
  		
- 		System.out.println(filePaht);
  		
  		// 사진 저장
  		File dir = new File(homeDir);
